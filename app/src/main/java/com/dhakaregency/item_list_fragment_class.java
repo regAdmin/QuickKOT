@@ -76,7 +76,8 @@ public class
     public  void populateItemList(ArrayList<Item> listArrayList)
     {
 
-        listView.setAdapter(new ItemListAdapter(_c,listArrayList));
+        ItemListAdapter itemListAdapter=new ItemListAdapter(_c,listArrayList);
+        listView.setAdapter(itemListAdapter);
 
         //ArrayAdapter<String[]> arrayAdapter=new ArrayAdapter<String[]>(activity,android.R.layout.simple_list_item_2,android.R.id.text1, itemlist);
 

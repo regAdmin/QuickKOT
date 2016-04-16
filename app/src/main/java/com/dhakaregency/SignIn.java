@@ -60,7 +60,7 @@ public class SignIn extends AppCompatActivity {
             return;
         }
 
-        _loginButton.setEnabled(false);
+       // _loginButton.setEnabled(false);
 
         String user_id = _useridText.getText().toString();
         String password = _passwordText.getText().toString();

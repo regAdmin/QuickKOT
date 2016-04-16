@@ -308,9 +308,11 @@ catch (Exception ex)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bundle bundle= data.getExtras();
-        String prep= bundle.getString("myData");
-        UpdatePreparation(prep);
+        if (data!=null) {
+            Bundle bundle = data.getExtras();
+            String prep = bundle.getString("myData");
+            UpdatePreparation(prep);
+        }
     }
 
 
