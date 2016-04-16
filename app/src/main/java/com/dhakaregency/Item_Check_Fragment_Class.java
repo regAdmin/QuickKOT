@@ -421,7 +421,23 @@ catch (Exception ex)
                     }
                     if(Integer.parseInt( isPrinted)==1  )
                     {
-                        Toast.makeText(_context,"Already Printed",Toast.LENGTH_SHORT).show();
+                        String prev_qty=singleRowCheckout.getQty();
+                        String new_qty=itemqty;
+                        if(Double.parseDouble(prev_qty)<=Double.parseDouble(new_qty))
+                        {
+                            View vw= listView.getChildAt(selectedIndex);
+                            TextView txtqty= ((TextView) vw.findViewById(R.id.txtQty));
+                            if (itemqty!="") {
+                                txtqty.setText(itemqty);
+                                ArrayAdapter<SingleRowCheckout> arrayAdapter = (ArrayAdapter<SingleRowCheckout>) listView.getAdapter();
+                                singleRowCheckout.setQty(itemqty);
+                                arrayAdapter.notifyDataSetChanged();
+                            }
+                            itemqty="";
+                        }
+                        else {
+                            Toast.makeText(_context, "Already Printed", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else
                     {

@@ -193,8 +193,7 @@ public class tablechoise extends AppCompatActivity implements Button.OnClickList
 
             case R.id.btnTCModifyKot:
 
-                CheckKOTPrinted checkKOTPrinted=new CheckKOTPrinted();
-                checkKOTPrinted.execute(_tableid);
+                callModify();
                 break;
             case R.id.btnTCServed:                // service provided
 
@@ -408,113 +407,6 @@ public class tablechoise extends AppCompatActivity implements Button.OnClickList
             }
             return response;
         }
-    }
-    public class CheckKOTPrinted extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String  s) {
-            super.onPostExecute(s);
-            CheckPrintedKOT(s);
-        }
-
-
-        @Override
-        protected String  doInBackground(String... params) {
-
-            String str = "http://192.168.99.12:8080/AuthService.svc/CheckKOT";
-            String response = "";
-
-            URL url = null;
-            try {
-                url = new URL(str);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            try {
-
-                HttpURLConnection conn = null;
-                try {
-                    conn = (HttpURLConnection) url.openConnection();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                String tableid= params[0].toString();
-
-                conn.setReadTimeout(15000);
-                conn.setConnectTimeout(15000);
-                conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                conn.setRequestProperty("Content-Type", "application/json");
-
-
-                tableid= tableid.substring(tableid.indexOf("(") + 1, tableid.indexOf(")"));
-
-
-                JSONObject jsonObject = new JSONObject();
-                // Build JSON string
-                JSONStringer userJson = new JSONStringer()
-                        .object()
-                        .key("tableid").value(tableid)//Todo place your variable here
-                        .endObject();
-
-                //byte[] outputBytes = jsonParam.toString().getBytes("UTF-8");
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
-                outputStreamWriter.write(userJson.toString());
-                outputStreamWriter.close();
-
-                int responseCode = conn.getResponseCode();
-
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
-                    String line;
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    while ((line = br.readLine()) != null) {
-                        response += line;
-                    }
-                } else {
-                    response = "";
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            JSONObject jObject = null;
-            if (!response.isEmpty()) {
-                try {
-                    jObject = new JSONObject(response);
-                    response= jObject.getString("CheckKOTPrintedResult");
-                    //   response=jObject.keys("0").toString();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-
-
-
-            return response;
-        }
-    }
-
-    private void CheckPrintedKOT(String s) {
-        boolean isPrinted=false;
-        if (Integer.parseInt(s)==1) {
-            Toast.makeText(getApplicationContext(),"KOT Already Printed",Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            callModify();
-        }
-
     }
 
 

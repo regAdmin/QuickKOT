@@ -109,9 +109,6 @@ public class final_checkout_bill extends AppCompatActivity {
 
                                     String prep=((TextView)vw.findViewById(R.id.txtKOTPrep)).getText().toString();
                                     String sp=((TextView)vw.findViewById(R.id.txtKOTSP)).getText().toString();
-
-
-
                                     Final_Bill final_bill= new Final_Bill(code,desc,qty,prep,sp,"0");
                                     _finalbilllistt.add(final_bill);
                                 }
@@ -138,8 +135,6 @@ public class final_checkout_bill extends AppCompatActivity {
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-
-
             }
         });
     }
