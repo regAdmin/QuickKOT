@@ -169,13 +169,21 @@ String isEditMode;
     @Override
     public void LoadSubMenu(String main_group_id) {
 
-        sub_menu_fragment_class subMenuFragmentClass= (sub_menu_fragment_class) getFragmentManager().findFragmentById(R.id.list_sub);
-        subMenuFragmentClass.ChangeSubMenu(main_group_id);
+
+
+        try {
+            sub_menu_fragment_class subMenuFragmentClass = (sub_menu_fragment_class) getFragmentManager().findFragmentById(R.id.list_sub);
+            subMenuFragmentClass.ChangeSubMenu(main_group_id);
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 
     @Override
     public void LoadItemList(String subgroup_id) {
-
         item_list_fragment_class itemListFragmentClass= (item_list_fragment_class ) getFragmentManager().findFragmentById(R.id.list_item);
         itemListFragmentClass.callMenu(subgroup_id);
     }

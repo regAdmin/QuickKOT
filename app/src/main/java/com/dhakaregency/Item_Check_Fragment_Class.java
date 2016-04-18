@@ -75,12 +75,21 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
     TextView txtPrep;
     int selectedIndex=-1;
     int previousSelectedIndex=-1;
-
+    View view=null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        this.viewGroup=container;
-        return   inflater.inflate(R.layout.item_check_layout,container,false);
+        //this.viewGroup=container;
+
+        try {
+            view=inflater.inflate(R.layout.item_check_layout,container,false);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return  view;
     }
 
     @Override
@@ -91,17 +100,22 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         String isEditmode;
-        Bundle b =activity.getIntent().getExtras();
+        Bundle b =getActivity().getIntent().getExtras();
         if (b!=null) {
             isEditmode = b.getString("isedit");
         }
 
 
         listView= (ListView) getView().findViewById(R.id.lstItemCheckout);
-        adapter = new ArrayAdapter<SingleRowCheckout>(_context, R.layout.single_row_checkout, list);
+        if (listView==null)
+        {
+            String a="asdf";
+        }
+
+        adapter = new ArrayAdapter<SingleRowCheckout>(getActivity(), R.layout.single_row_checkout, list);
 
 
 
@@ -161,8 +175,8 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
             }
         });
 
-
     }
+
     public void PopulateKotItems(ArrayList<SingleRowCheckout> s)
     {
         if(listView!=null) {
@@ -175,7 +189,7 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
 
 
                 CheckoutBillAdapter checkoutBillAdapter;
-                checkoutBillAdapter = new CheckoutBillAdapter(_context, 0, list);
+                checkoutBillAdapter = new CheckoutBillAdapter(getActivity(), 0, list);
                 listView.setAdapter(checkoutBillAdapter);
 
                 //CheckoutBillAdapter checkoutBillAdapter= new CheckoutBillAdapter(_context, 0, list);
@@ -255,7 +269,7 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
 try {
     list.add(singleRow);
     CheckoutBillAdapter checkoutBillAdapter;
-    checkoutBillAdapter = new CheckoutBillAdapter(_context, 0, list);
+    checkoutBillAdapter = new CheckoutBillAdapter(getActivity(), 0, list);
     listView.setAdapter(checkoutBillAdapter);
 }
 catch (Exception ex)
@@ -374,7 +388,7 @@ catch (Exception ex)
 
                     SingleRowCheckout singleRowCheckout = (SingleRowCheckout) listView.getItemAtPosition(selectedIndex);
 
-                    Intent intent = new Intent(_context, preparation.class);
+                    Intent intent = new Intent(getActivity(), preparation.class);
                     Bundle bundle = new Bundle();
                     //Add your data to bundle
                     bundle.putString("index", selectedIndex + "");
@@ -395,7 +409,7 @@ catch (Exception ex)
                             isPrinted = "0";
                         }
                         if (Integer.parseInt(isPrinted) == 1) {
-                            Toast.makeText(_context, "Already Printed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Already Printed", Toast.LENGTH_SHORT).show();
                         } else {
 
                             ArrayAdapter<SingleRowCheckout> arrayAdapter = (ArrayAdapter<SingleRowCheckout>) listView.getAdapter();
@@ -438,7 +452,7 @@ catch (Exception ex)
                             itemqty="";
                         }
                         else {
-                            Toast.makeText(_context, "Already Printed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Already Printed", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
@@ -456,7 +470,6 @@ catch (Exception ex)
                 }
                 break;
             }
-
             //.... etc
         }
 

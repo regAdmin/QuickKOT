@@ -65,7 +65,7 @@ public class sub_menu_fragment_class extends Fragment{
     public void clearSubMenu()
     {
         ArrayList<String> arrayList1=new ArrayList<>();
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(a,android.R.layout.simple_list_item_1,arrayList1);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList1);
         listView.setAdapter(arrayAdapter);
     }
     public void ChangeSubMenu(String menu_group_id)
@@ -81,7 +81,7 @@ public class sub_menu_fragment_class extends Fragment{
         {
             arrayList.add(menuList.getDescription());
         }
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(a,android.R.layout.simple_list_item_1,arrayList);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList);
 
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,6 +90,7 @@ public class sub_menu_fragment_class extends Fragment{
 
                 String subdescription=((String) listView.getItemAtPosition(position));
                 String submenucode = subdescription.substring(subdescription.indexOf("(")+1,subdescription.indexOf(")") );
+                communicator= (Communicator) getActivity();
                 communicator.LoadItemList(submenucode);
             }
         });

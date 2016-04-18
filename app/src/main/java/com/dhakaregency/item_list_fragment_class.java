@@ -47,7 +47,10 @@ public class
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.itemlist_layout,container,false);
+
+            return inflater.inflate(R.layout.itemlist_layout, container, false);
+
+
     }
     @Override
     public void onAttach(Context context) {
@@ -76,7 +79,7 @@ public class
     public  void populateItemList(ArrayList<Item> listArrayList)
     {
 
-        ItemListAdapter itemListAdapter=new ItemListAdapter(_c,listArrayList);
+        ItemListAdapter itemListAdapter=new ItemListAdapter(getActivity(),listArrayList);
         listView.setAdapter(itemListAdapter);
 
         //ArrayAdapter<String[]> arrayAdapter=new ArrayAdapter<String[]>(activity,android.R.layout.simple_list_item_2,android.R.id.text1, itemlist);
@@ -96,6 +99,7 @@ public class
                 String code=textcode.getText().toString();
                 String qty="1";
                 SingleRowCheckout singleRow=new SingleRowCheckout(code,desc,qty,salesprice,"0");
+                communicator= (Communicator) getActivity();
                 communicator.ParseItem(singleRow);
 
             }
@@ -106,7 +110,7 @@ public class
 
 public void clearItemList(){
     ArrayList<String> arrayList2=new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(_c,android.R.layout.simple_list_item_1,arrayList2);
+    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList2);
     listView.setAdapter(arrayAdapter);
 }
 

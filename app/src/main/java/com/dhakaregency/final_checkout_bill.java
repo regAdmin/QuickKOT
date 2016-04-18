@@ -92,7 +92,7 @@ public class final_checkout_bill extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 // SENDING KOT TO THE DATBASE
-                new AlertDialog.Builder(_context)
+                new AlertDialog.Builder(getApplicationContext())
                         .setTitle("Confirm Submit")
                         .setMessage("Are you sure you want send order?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

@@ -74,7 +74,7 @@ Activity activity;
               {
                   arrayList.add(menuList.getDescription());
               }
-              ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,arrayList);
+              ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,arrayList);
 
               listView.setAdapter(arrayAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,7 +85,16 @@ Activity activity;
                         String menucode = menudescription.substring(menudescription.indexOf("(")+1,menudescription.indexOf(")") );
 
                         //TODO call sub menu from here
-                        communicator.LoadSubMenu(menucode);
+
+                        try {
+                            communicator= (Communicator) getActivity();
+                            communicator.LoadSubMenu(menucode);
+                        }
+                        catch (Exception e)
+                        {
+                         e.printStackTrace();
+
+                        }
                     }
                 });
 
