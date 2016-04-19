@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/foodtypeLayout"
+    >
+        <Button
+            android:text="Food"
+            android:background="@drawable/fragment_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:id="@+id/btnFood"
+            />
+
+        <Button
+            android:text="Beverage"
+            android:background="@drawable/fragment_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:id="@+id/btnBev"
+            android:layout_marginLeft="10dp"
+            />
+
+        <Button
+            android:text="Shisha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:id="@+id/btnShisha"
+            android:background="@drawable/fragment_shape"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:text="Hard Drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:id="@+id/btnHD"
+            android:background="@drawable/fragment_shape"
+            android:layout_marginLeft="10dp"
+            />
+
+        <Button
+            android:text="Others"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:id="@+id/btnOthers"
+            android:background="@drawable/fragment_shape"
+            android:layout_marginLeft="10dp"
+            />
+
+    <Button
+        android:text="Finalize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:id="@+id/btnFinalize"
+        android:background="@drawable/fragment_shape"
+        android:layout_gravity="right"
+        android:layout_marginLeft="100dp"
+        />
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:id="@+id/btnBackToOrderTable"
+        android:background="@drawable/fragment_shape"
+        android:layout_gravity="right"
+        android:layout_marginLeft="20dp"
+        />
+
+
+    <Button
+        android:text="Log Out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:id="@+id/btnLogOut"
+        android:background="@drawable/fragment_shape"
+        android:layout_gravity="right"
+        android:layout_marginLeft="20dp"
+        />
+</LinearLayout>

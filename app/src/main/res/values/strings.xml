@@ -4,6 +4,17 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_sign_in">Quick KOT</string>
     <string name="user_id">User Id</string>
+    <string name="title_activity_modules">modules</string>
+    <string name="title_activity_appsettings">appsettings</string>
+    <string name="title_activity_outlets">Chose Your Outlets.....</string>
+    <string name="title_activity_guestchoise">guestchoise</string>
+    <string name="title_activity_tablechoise">Choose Tables...</string>
+    <string name="title_activity_pax">pax</string>
+    <string name="title_activity_sendorder">sendorder</string>
+    <string name="title_activity_final_checkout_bill">final_checkout_bill</string>
+    <string name="title_activity_preparation">preparation</string>
+    <string name="title_activity_kot_confirmation">kot_confirmation</string>
+    <string name="title_activity_guest_comments">guest_comments</string>
 
 
 </resources>

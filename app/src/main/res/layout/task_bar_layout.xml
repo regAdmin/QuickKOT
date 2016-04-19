@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/taskbarView"
+    >
+
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="76dp"
+        android:text="Total Amount"
+        android:id="@+id/txtTotalAmount" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="76dp"
+        android:text="0 Tk."
+        android:id="@+id/txtShowTotal" />
+</LinearLayout>
