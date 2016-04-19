@@ -1,17 +1,17 @@
 package com.dhakaregency;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class final_checkout_bill extends AppCompatActivity {
+public class final_checkout_bill extends Activity {
 
     ListView listView;
     String moduleid;
@@ -91,50 +91,53 @@ public class final_checkout_bill extends AppCompatActivity {
         buttonSendKOT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// SENDING KOT TO THE DATBASE
-                new AlertDialog.Builder(getApplicationContext())
-                        .setTitle("Confirm Submit")
-                        .setMessage("Are you sure you want send order?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                ArrayList<Final_Bill> _finalbilllistt=new ArrayList<Final_Bill>();
+// SENDING KOT TO THE DATBASE  android.support.v7.app.AlertDialog.Builder(this)
 
-                                for (int i = 0; i < listView.getCount(); i++) {
 
-                                    View vw=listView.getChildAt(i);
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(final_checkout_bill.this);
+                //dlgAlert.setTitle("Confirm Submit");
+                dlgAlert .setMessage("Are you sure you want send order?");
+                dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // call your code here
+                        ArrayList<Final_Bill> _finalbilllistt = new ArrayList<Final_Bill>();
 
-                                    String code=((TextView)vw.findViewById(R.id.txtKOTCode)).getText().toString();
-                                    String desc=((TextView)vw.findViewById(R.id.txtKOTDescription)).getText().toString();
-                                    String qty=((TextView)vw.findViewById(R.id.txtKOTQTY)).getText().toString();
+                        for (int i = 0; i < listView.getCount(); i++) {
 
-                                    String prep=((TextView)vw.findViewById(R.id.txtKOTPrep)).getText().toString();
-                                    String sp=((TextView)vw.findViewById(R.id.txtKOTSP)).getText().toString();
-                                    Final_Bill final_bill= new Final_Bill(code,desc,qty,prep,sp,"0");
-                                    _finalbilllistt.add(final_bill);
-                                }
+                            View vw = listView.getChildAt(i);
 
-                                if(Integer.parseInt(iseditmode.trim())==0) {
-                                    KotEntity kotEntity = new KotEntity(tableid, pax, _finalbilllistt);
-                                    SendKOTToDb sendKOT = new SendKOTToDb();
-                                    sendKOT.execute(kotEntity);
+                            String code = ((TextView) vw.findViewById(R.id.txtKOTCode)).getText().toString();
+                            String desc = ((TextView) vw.findViewById(R.id.txtKOTDescription)).getText().toString();
+                            String qty = ((TextView) vw.findViewById(R.id.txtKOTQTY)).getText().toString();
 
-                                }
-                                else
-                                {
-                                    KotEntity kotEntity = new KotEntity(tableid, pax, _finalbilllistt);// edit mode enabled
-                                    ModifyKOTToDb modifyKOTToDb=new ModifyKOTToDb();
-                                    modifyKOTToDb.execute(kotEntity);
-                                }
+                            String prep = ((TextView) vw.findViewById(R.id.txtKOTPrep)).getText().toString();
+                            String sp = ((TextView) vw.findViewById(R.id.txtKOTSP)).getText().toString();
+                            Final_Bill final_bill = new Final_Bill(code, desc, qty, prep, sp, "0");
+                            _finalbilllistt.add(final_bill);
+                        }
 
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                        if (Integer.parseInt(iseditmode.trim()) == 0) {
+                            KotEntity kotEntity = new KotEntity(tableid, pax, _finalbilllistt);
+                            SendKOTToDb sendKOT = new SendKOTToDb();
+                            sendKOT.execute(kotEntity);
+
+                        } else {
+                            KotEntity kotEntity = new KotEntity(tableid, pax, _finalbilllistt);// edit mode enabled
+                            ModifyKOTToDb modifyKOTToDb = new ModifyKOTToDb();
+                            modifyKOTToDb.execute(kotEntity);
+                        }
+                    }
+                });
+                dlgAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+
+                    }
+                });
+
+                dlgAlert.show();
             }
         });
     }
@@ -148,7 +151,7 @@ public class final_checkout_bill extends AppCompatActivity {
     public void ShowKOT(String kotNumber)
     {
         if (kotNumber.trim()!="0") {
-            Intent intent = new Intent(getApplicationContext(), kot_confirmation.class);
+            Intent intent = new Intent(_context, kot_confirmation.class);
             Bundle bundle = new Bundle();
              bundle.putString("moduleId",moduleid );
              bundle.putString("userid",userid );
