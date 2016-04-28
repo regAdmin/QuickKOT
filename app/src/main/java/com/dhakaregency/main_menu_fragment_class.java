@@ -119,7 +119,7 @@ Activity activity;
                 @Override
                 protected ArrayList<MenuList> doInBackground(ArrayList<String>... params) {
 
-                    String str = "http://192.168.99.12:8080/AuthService.svc/GetMenuList";
+                    String str = "http://192.168.99.23:8080/AuthService.svc/GetMenuList";
                     String response = "";
                     ArrayList<MenuList> menuListArrayList= new ArrayList<>();
 

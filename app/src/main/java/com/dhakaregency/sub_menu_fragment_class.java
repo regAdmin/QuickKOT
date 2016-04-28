@@ -90,8 +90,10 @@ public class sub_menu_fragment_class extends Fragment{
 
                 String subdescription=((String) listView.getItemAtPosition(position));
                 String submenucode = subdescription.substring(subdescription.indexOf("(")+1,subdescription.indexOf(")") );
+
+
                 communicator= (Communicator) getActivity();
-                communicator.LoadItemList(submenucode);
+                communicator.LoadItemList(submenucode);// HOW to get module id
             }
         });
     }
@@ -112,7 +114,7 @@ public class sub_menu_fragment_class extends Fragment{
         @Override
         protected ArrayList<SubMenuList> doInBackground(String ... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetSubMenuList";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetSubMenuList";
             String response = "";
             ArrayList<SubMenuList> menuListArrayList= new ArrayList<>();
 

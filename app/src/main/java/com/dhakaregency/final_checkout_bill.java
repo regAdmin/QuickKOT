@@ -112,7 +112,8 @@ public class final_checkout_bill extends Activity {
 
                             String prep = ((TextView) vw.findViewById(R.id.txtKOTPrep)).getText().toString();
                             String sp = ((TextView) vw.findViewById(R.id.txtKOTSP)).getText().toString();
-                            Final_Bill final_bill = new Final_Bill(code, desc, qty, prep, sp, "0");
+                            String kitc= ((TextView) vw.findViewById(R.id.txtKitchen)).getText().toString();
+                            Final_Bill final_bill = new Final_Bill(code, desc, qty, prep, sp, "0",kitc);
                             _finalbilllistt.add(final_bill);
                         }
 
@@ -181,7 +182,7 @@ public class final_checkout_bill extends Activity {
 
         @Override
         protected String doInBackground(KotEntity... params) {
-            String str = "http://192.168.99.12:8080/AuthService.svc/SendKOT";
+            String str = "http://192.168.99.23:8080/AuthService.svc/SendKOT";
             String response ="";
             URL url = null;
             try {
@@ -279,7 +280,7 @@ public class final_checkout_bill extends Activity {
                         jGroup.put("preparation", kotEntities.get(i).getItemPrep());
                         jGroup.put("cost", kotEntities.get(i).getItemCostPrice());
                         jGroup.put("sales", kotEntities.get(i).getItemSalesPrice());
-
+                        jGroup.put("kitchen", kotEntities.get(i).getItemKitchen());
                         jArray.put(jGroup);
 
                         // /itemDetail Name is JsonArray Name
@@ -354,7 +355,7 @@ public class final_checkout_bill extends Activity {
 
         @Override
         protected String doInBackground(KotEntity... params) {
-            String str = "http://192.168.99.12:8080/AuthService.svc/ModifyKOT";
+            String str = "http://192.168.99.23:8080/AuthService.svc/ModifyKOT";
             String response = "";
             URL url = null;
             try {

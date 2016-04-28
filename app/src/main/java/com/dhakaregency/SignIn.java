@@ -144,7 +144,7 @@ public class SignIn extends AppCompatActivity {
         @Override
         protected Integer  doInBackground(ArrayList<String>... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetAuth";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetAuth";
             String response="";
             URL url=null;
             try {

@@ -67,12 +67,16 @@ public class
         super.onActivityCreated(savedInstanceState);
         listView= (ListView) getView().findViewById(R.id.lstItem);
     }
-    public void callMenu(String submenucode)
+    public void callMenu(String submenucode,String moduleid)
     {
         if(listView!=null) {
 
+            ArrayList<String> passing = new ArrayList<String>();
+            passing.add(submenucode);
+            passing.add(moduleid);
+
             GetItemList getItemList=new GetItemList();
-            getItemList.execute(submenucode);
+            getItemList.execute(passing);
         }
 
     }
@@ -93,12 +97,14 @@ public class
                 TextView textdesc= (TextView) view.findViewById(R.id.txtDescription);
                 TextView textcode= (TextView) view.findViewById(R.id.txtItemCodes);
                 TextView textSp= (TextView) view.findViewById(R.id.txtSalesPrice);
+                TextView textKitchen=(TextView) view.findViewById(R.id.txtKitchen);
 
                 String desc=textdesc.getText().toString();
                 String salesprice=textSp.getText().toString();
                 String code=textcode.getText().toString();
                 String qty="1";
-                SingleRowCheckout singleRow=new SingleRowCheckout(code,desc,qty,salesprice,"0");
+                String kitchen=textKitchen.getText().toString();
+                SingleRowCheckout singleRow=new SingleRowCheckout(code,desc,qty,salesprice,"0","0",kitchen);
                 communicator= (Communicator) getActivity();
                 communicator.ParseItem(singleRow);
 
@@ -114,7 +120,7 @@ public void clearItemList(){
     listView.setAdapter(arrayAdapter);
 }
 
-    public class GetItemList extends AsyncTask<String, Void, ArrayList<Item>> {
+    public class GetItemList extends AsyncTask<ArrayList<String>, Void, ArrayList<Item>> {
 
         @Override
         protected void onPreExecute() {
@@ -129,9 +135,9 @@ public void clearItemList(){
         }
 
         @Override
-        protected ArrayList<Item> doInBackground(String ... params) {
+        protected ArrayList<Item> doInBackground(ArrayList<String> ... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetItem";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetItem";
             String response = "";
             ArrayList<Item> itemArrayList= new ArrayList<>();
 
@@ -159,12 +165,14 @@ public void clearItemList(){
 
                 conn.setRequestProperty("Content-Type", "application/json");
 
+                ArrayList<String> passed = params[0];
 
                 JSONObject jsonObject = new JSONObject();
                 // Build JSON string
                 JSONStringer userJson = new JSONStringer()
                         .object()
-                        .key("subgroupid").value(params[0].toString())//Todo place your variable here
+                        .key("subgroupid").value(passed.get(0).toString())//Todo place your variable here
+                        .key("moduleid").value(passed.get(1).toString())//Todo place your variable here
                         .endObject();
 
                 //byte[] outputBytes = jsonParam.toString().getBytes("UTF-8");
@@ -220,6 +228,7 @@ public void clearItemList(){
                         item.setCode(object.getString("code"));
                         item.setDescription(object.getString("description"));
                         item.setSales(object.getString("sales"));
+                        item.setKitchen(object.getString("kitchen"));
                         itemArrayList.add(item);
                     }
                 } catch (JSONException e) {

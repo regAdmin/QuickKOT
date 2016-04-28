@@ -135,7 +135,7 @@ Context _context;
         @Override
         protected String  doInBackground(String... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/TakeServey";
+            String str = "http://192.168.99.23:8080/AuthService.svc/TakeServey";
             String response = "";
 
             URL url = null;

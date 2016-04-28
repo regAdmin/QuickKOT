@@ -19,12 +19,20 @@ class SingleRow
             String codes;
             String descriptions;
             String saless;
+            String kitchen;
 
             SingleRow(String descriptions,String saless,String _code)
             {
                 this.descriptions=descriptions;
                 this.saless=saless;
                 this.codes=_code;
+            }
+            SingleRow(String descriptions,String saless,String _code,String _kitchen)
+            {
+                this.descriptions=descriptions;
+                this.saless=saless;
+                this.codes=_code;
+                this.kitchen=_kitchen;
             }
         }
 
@@ -37,6 +45,7 @@ class SingleRowCheckout
     private String Preparation;
     private String cost;
     private String canmodify;
+    private  String kitchen;
     SingleRowCheckout()
     {
 
@@ -58,6 +67,17 @@ class SingleRowCheckout
         this.setCost(costs);
         this.setCanmodify(_canmodify);
     }
+    SingleRowCheckout(String codes,String descriptions,String qtys,String saless,String costs,String _canmodify,String _kitchen)
+    {
+        this.setCodes(codes);
+        this.setDescriptions(descriptions);
+        this.setSaless(saless);
+        this.setQty(qtys);
+        this.setCost(costs);
+        this.setCanmodify(_canmodify);
+        this.setKitchen(_kitchen);
+    }
+
 
     public String getCodes() {
         return codes;
@@ -114,6 +134,14 @@ class SingleRowCheckout
     public void setCanmodify(String canmodify) {
         this.canmodify = canmodify;
     }
+
+    public String getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(String kitchen) {
+        this.kitchen = kitchen;
+    }
 }
 
 public class ItemListAdapter extends BaseAdapter {
@@ -126,10 +154,9 @@ public class ItemListAdapter extends BaseAdapter {
         int i=0;
         for(Item item:listArrayList){
 
-            list.add(new SingleRow(item.getDescription(),item.getSales(),item.getCode()));
+            list.add(new SingleRow(item.getDescription(),item.getSales(),item.getCode(),item.getKitchen()));
             i++;
         }
-
     }
 
     @Override
@@ -154,11 +181,13 @@ public class ItemListAdapter extends BaseAdapter {
         TextView tdesc= (TextView) row.findViewById(R.id.txtDescription);
         TextView tsales= (TextView) row.findViewById(R.id.txtSalesPrice);
         TextView tcode=(TextView) row.findViewById(R.id.txtItemCodes);
+        TextView tkitchen=(TextView) row.findViewById(R.id.txtKitchen);
      SingleRow temp= list.get(position);
 
         tdesc.setText(temp.descriptions);
         tsales.setText(temp.saless);
         tcode.setText(temp.codes);
+        tkitchen.setText(temp.kitchen);
         return row;
     }
 }

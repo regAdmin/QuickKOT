@@ -53,14 +53,11 @@ public class CheckoutBillAdapter extends ArrayAdapter<SingleRowCheckout> {
                 LayoutInflater layoutInflater= (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 row=layoutInflater.inflate(R.layout.single_row_checkout, parent,false );
 
-
-
                 TextView tcode=(TextView) row.findViewById(R.id.txtCode);
                 TextView tdescription=(TextView) row.findViewById(R.id.txtDescription);;
                 TextView tsales=(TextView) row.findViewById(R.id.txtSalesPrice);
                 TextView tqty=(TextView) row.findViewById(R.id.txtQty);
-
-
+                TextView tkitchen=(TextView) row.findViewById(R.id.txtKitchenCheckout);
 
             SingleRowCheckout temp= singleRowCheckouts.get(position);
 
@@ -69,12 +66,10 @@ public class CheckoutBillAdapter extends ArrayAdapter<SingleRowCheckout> {
                 tdescription.setText(temp.getDescriptions());
                 tqty.setText(temp.getQty());
                 tsales.setText(temp.getSaless());
-
+                tkitchen.setText(temp.getKitchen());
             }
-
-
-        } catch (Exception e) {
-
+        } catch (Exception e)
+        {
 
         }
         return row;

@@ -14,19 +14,21 @@ public class Final_Bill implements Parcelable{
     private  String itemPrep;
     private String itemSalesPrice;
     private String itemCostPrice;
+    private String itemKitchen;
 
     public  Final_Bill(){
 
     }
 
     public  Final_Bill(String _itemCode,String _itemDescription,String _itemQty,String _itemPrep,
-                       String _itemSalesPrice,String _itemCostPrice){
+                       String _itemSalesPrice,String _itemCostPrice,String _itemKitchen){
         this.setItemCode(_itemCode);
         this.setItemDescription(_itemDescription);
         this.setItemQty(_itemQty);
         this.setItemPrep(_itemPrep);
         this.setItemSalesPrice(_itemSalesPrice);
         this.setItemCostPrice(_itemCostPrice);
+        this.setItemKitchen(_itemKitchen);
 
     }
     public Final_Bill(Parcel input) {
@@ -36,7 +38,7 @@ public class Final_Bill implements Parcelable{
         this.setItemPrep(input.readString());
         this.setItemSalesPrice(input.readString());
         this.setItemCostPrice(input.readString());
-
+        this.setItemKitchen(input.readString());
     }
 
     public static final Creator<Final_Bill> CREATOR = new Creator<Final_Bill>() {
@@ -64,6 +66,8 @@ public class Final_Bill implements Parcelable{
         dest.writeString(this.getItemPrep());
         dest.writeString(this.getItemSalesPrice());
         dest.writeString(this.getItemCostPrice());
+        dest.writeString(this.getItemKitchen());
+
     }
 
     public String getItemCode() {
@@ -112,5 +116,13 @@ public class Final_Bill implements Parcelable{
 
     public void setItemCostPrice(String itemCostPrice) {
         this.itemCostPrice = itemCostPrice;
+    }
+
+    public String getItemKitchen() {
+        return itemKitchen;
+    }
+
+    public void setItemKitchen(String itemKitchen) {
+        this.itemKitchen = itemKitchen;
     }
 }

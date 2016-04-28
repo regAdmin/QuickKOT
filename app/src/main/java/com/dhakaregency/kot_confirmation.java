@@ -101,7 +101,7 @@ public class kot_confirmation extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String str = "http://192.168.99.12:8080/AuthService.svc/Print";
+            String str = "http://192.168.99.23:8080/AuthService.svc/Print";
             String response = "";
             String aa="";
             URL url = null;
@@ -179,7 +179,7 @@ String queueno=params[0].toString();
 
         @Override
         protected String doInBackground(String... params) {
-            String str = "http://192.168.99.12:8080/AuthService.svc/RePrint";
+            String str = "http://192.168.99.23:8080/AuthService.svc/RePrint";
             String response = "";
             String aa="";
             URL url = null;

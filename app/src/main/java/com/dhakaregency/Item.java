@@ -9,6 +9,7 @@ public class Item {
     private  String description;
     private String cost;
     private String sales;
+    private String kitchen;
 
 
     public String getCode() {
@@ -42,5 +43,13 @@ public class Item {
 
     public void setSales(String sales) {
         this.sales = sales;
+    }
+
+    public String getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(String kitchen) {
+        this.kitchen = kitchen;
     }
 }

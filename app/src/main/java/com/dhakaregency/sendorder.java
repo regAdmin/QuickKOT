@@ -95,7 +95,7 @@ String isEditMode;
                     {
 
                         SingleRowCheckout singlerow= (SingleRowCheckout) listFinal.getItemAtPosition(position);
-                        Final_Bill finalbill=new Final_Bill(singlerow.getCodes(), singlerow.getDescriptions(), singlerow.getQty(), singlerow.getPreparation(),singlerow.getSaless(),singlerow.getCost());
+                        Final_Bill finalbill=new Final_Bill(singlerow.getCodes(), singlerow.getDescriptions(), singlerow.getQty(), singlerow.getPreparation(),singlerow.getSaless(),singlerow.getCost(),singlerow.getKitchen());
                         arrayList.add(finalbill);
                     }
 
@@ -149,7 +149,6 @@ String isEditMode;
             intent.putExtras(bundle);
             //startActivityForResult(intent, 0);
             startActivityForResult(intent, 0) ;
-
         }
 
 
@@ -168,9 +167,6 @@ String isEditMode;
     }
     @Override
     public void LoadSubMenu(String main_group_id) {
-
-
-
         try {
             sub_menu_fragment_class subMenuFragmentClass = (sub_menu_fragment_class) getFragmentManager().findFragmentById(R.id.list_sub);
             subMenuFragmentClass.ChangeSubMenu(main_group_id);
@@ -179,13 +175,12 @@ String isEditMode;
         {
             ex.printStackTrace();
         }
-
     }
 
     @Override
     public void LoadItemList(String subgroup_id) {
         item_list_fragment_class itemListFragmentClass= (item_list_fragment_class ) getFragmentManager().findFragmentById(R.id.list_item);
-        itemListFragmentClass.callMenu(subgroup_id);
+        itemListFragmentClass.callMenu(subgroup_id,moduleid);
     }
 
     @Override
@@ -219,7 +214,7 @@ String isEditMode;
 
         @Override
         protected ArrayList<SingleRowCheckout> doInBackground(String... params) {
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetKOT";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetKOT";
             String response = "";
             ArrayList<SingleRowCheckout> arrayList=arrayList=new ArrayList<>();;
 

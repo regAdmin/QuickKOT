@@ -237,7 +237,7 @@ public class tablechoise extends AppCompatActivity implements Button.OnClickList
         @Override
         protected ArrayList<TableList> doInBackground(String... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetTableList";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetTableList";
             String response = "";
             ArrayList<TableList> tableListArrayList = new ArrayList<>();
 
@@ -347,7 +347,7 @@ public class tablechoise extends AppCompatActivity implements Button.OnClickList
         @Override
         protected String  doInBackground(String... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/SaveService";
+            String str = "http://192.168.99.23:8080/AuthService.svc/SaveService";
             String response = "";
 
             URL url = null;

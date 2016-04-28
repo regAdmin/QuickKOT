@@ -76,6 +76,7 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
     int selectedIndex=-1;
     int previousSelectedIndex=-1;
     View view=null;
+    TextView txtKitchen;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -116,6 +117,7 @@ public class Item_Check_Fragment_Class extends Fragment implements  Button.OnCli
         }
 
         adapter = new ArrayAdapter<SingleRowCheckout>(getActivity(), R.layout.single_row_checkout, list);
+         txtKitchen= (TextView) getView().findViewById(R.id.txtKitchenCheckout);
 
 
 
@@ -302,17 +304,20 @@ catch (Exception ex)
         }
 
     }
-    public void UpdatePreparation(String preparation)
+    public void UpdatePreparation(String preparation,String kitchenvalue)
     {
 
         View vw= listView.getChildAt(selectedIndex);
         txtPrep= ((TextView) vw.findViewById(R.id.txtPrepCheckout));
+        txtKitchen=((TextView) vw.findViewById(R.id.txtKitchenCheckout));
         SingleRowCheckout singleRowCheckout = (SingleRowCheckout) listView.getItemAtPosition(selectedIndex);
         txtPrep.setText(preparation);
+        txtKitchen.setText(kitchenvalue);
         singleRowCheckout.setPreparation(preparation);
         ArrayAdapter<SingleRowCheckout> arrayAdapter= (ArrayAdapter<SingleRowCheckout>) listView.getAdapter();
 
         arrayAdapter.getItem(selectedIndex).setPreparation(preparation);
+        arrayAdapter.getItem(selectedIndex).setKitchen(kitchenvalue);
         arrayAdapter.notifyDataSetChanged();
 
 //listView.setAdapter(arrayAdapter);
@@ -325,7 +330,8 @@ catch (Exception ex)
         if (data!=null) {
             Bundle bundle = data.getExtras();
             String prep = bundle.getString("myData");
-            UpdatePreparation(prep);
+            String kitch= bundle.getString("kit");
+            UpdatePreparation(prep,kitch);
         }
     }
 

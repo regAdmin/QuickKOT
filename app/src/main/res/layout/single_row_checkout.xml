@@ -53,6 +53,15 @@
     android:id="@+id/txtPrepCheckout"
     android:visibility="gone"
     />
+    <TextView
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Kitchen"
+        android:layout_toRightOf="@+id/txtPrepCheckout"
+        android:gravity="center"
+        android:id="@+id/txtKitchenCheckout"
+        />
 
 
 

@@ -159,7 +159,7 @@ public class outlets extends AppCompatActivity {
         @Override
         protected ArrayList<OutletsEntity> doInBackground(ArrayList<String>... params) {
 
-            String str = "http://192.168.99.12:8080/AuthService.svc/GetModules";
+            String str = "http://192.168.99.23:8080/AuthService.svc/GetModules";
             String response = "";
             ArrayList<OutletsEntity> outletsEntities = new ArrayList<>();
 
